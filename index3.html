@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      img {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="bones"></div>
+    <script>
+      let number = localStorage.getItem("bones_number");
+      let parent = document.getElementById("bones");
+
+      let sum = 0;
+      let control_number = 0;
+
+      function change_page() {
+        if (control_number == number) {
+          localStorage.setItem("sum", sum);
+          window.location.href = "index4.html";
+        }
+      }
+
+      function roll_bones(element) {
+        setTimeout(() => {
+          let result = Math.floor((Math.random() * 1000) % 6) + 1;
+          element.src = `${result}.jpg`;
+          sum += result;
+          control_number++;
+          change_page(0);
+        }, Math.floor(Math.random() * (4000 - 1000 + 1)) + 1000);
+      }
+
+      for (let i = 1; i <= number; i++) {
+        let element = document.createElement("img");
+        element.id = i;
+        element.src = "gif.gif";
+        parent.appendChild(element);
+        roll_bones(element);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      button {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="button-">-</button>
+    <button id="button+">+</button>
+    <hr />
+    <div id="buttons">
+      <button id="button1" value="1" onclick="func(event)">1</button>
+      <button id="button2" value="2" onclick="func(event)">2</button>
+      <button id="button3" value="3" onclick="func(event)">3</button>
+    </div>
+
+    <script>
+      console.log(window.location.href);
+      let current_id = 3;
+      let parent = document.getElementById("buttons");
+      let func = (event) => {
+        localStorage.clear(0);
+        localStorage.setItem("bones_number", event.target.value);
+        window.location.href = "index3.html";
+      };
+
+      document.getElementById("button-").addEventListener("click", () => {
+        if (current_id == 3) return;
+        parent.removeChild(document.getElementById(`button${current_id}`));
+        current_id--;
+      });
+      document.getElementById("button+").addEventListener("click", () => {
+        if (current_id == 10) return;
+        current_id++;
+        let button = document.createElement("button");
+        button.id = `button${current_id}`;
+        button.value = current_id;
+        button.innerHTML = current_id;
+        button.onclick = func;
+        parent.appendChild(button);
+      });
+    </script>
+  </body>
+</html>
