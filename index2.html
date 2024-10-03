@@ -5,14 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
+      body {
+        background-color: rgb(32, 32, 32);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #buttons {
+        display: flex;
+      }
+
       button {
-        margin: 0;
+        margin: 2px;
+        padding: auto;
+        color: rgb(0, 0, 0);
+        width: 80px;
+        height: 80px;
+        border: none;
+        background-color: rgb(209, 207, 207);
+      }
+
+      button:hover {
+        background-color: rgb(92, 92, 92);
+      }
+
+      hr {
+        width: 100%;
       }
     </style>
   </head>
   <body>
-    <button id="button-">-</button>
-    <button id="button+">+</button>
+    <div>
+      <button id="button-">-</button>
+      <button id="button+">+</button>
+    </div>
     <hr />
     <div id="buttons">
       <button id="button1" value="1" onclick="func(event)">1</button>

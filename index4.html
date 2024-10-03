@@ -4,11 +4,49 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        background-color: rgb(32, 32, 32);
+      }
+
+      button {
+        margin-top: 100px;
+        font-size: 60px;
+        color: rgb(0, 0, 0);
+        width: 300px;
+        height: 300px;
+        border: none;
+        background-color: rgb(209, 207, 207);
+        border-radius: 10px;
+      }
+
+      button:hover {
+        width: 600px;
+        height: 600px;
+        font-size: 300px;
+      }
+    </style>
   </head>
   <body>
-    <div id="wynik"></div>
+    <button id="wynik"></button>
     <script>
-      document.getElementById("wynik").innerHTML = localStorage.getItem("sum");
+      let sum = localStorage.getItem("sum");
+      if (sum)
+        document.getElementById("wynik").innerHTML =
+          localStorage.getItem("sum");
+      else window.location.href = "index3.html";
+
+      let degrees = 0;
+      let direction = 1;
+      let runner = setInterval(function () {
+        if (degrees == 20) direction = -1;
+        if (degrees == -20) direction = 1;
+        degrees += direction;
+        document.getElementById("wynik").style.webkitTransform =
+          "rotate(" + degrees + "deg)";
+      }, 8);
     </script>
   </body>
 </html>

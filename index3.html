@@ -5,15 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
+      body {
+        padding-top: 100px;
+        background-color: rgb(32, 32, 32);
+        display: flex;
+        justify-content: center;
+      }
+
       img {
+        margin: 20px;
         border: 1px solid black;
       }
     </style>
   </head>
   <body>
-    <div id="bones"></div>
+    <div id="box">
+      <hr />
+      <div id="bones"></div>
+      <hr />
+    </div>
     <script>
       let number = localStorage.getItem("bones_number");
+      if (!number) window.location.href = "index2.html";
       let parent = document.getElementById("bones");
 
       let sum = 0;
@@ -21,18 +34,27 @@
 
       function change_page() {
         if (control_number == number) {
-          localStorage.setItem("sum", sum);
-          window.location.href = "index4.html";
+          setTimeout(() => {
+            localStorage.setItem("sum", sum);
+            window.location.href = "index4.html";
+          }, 1000);
         }
       }
 
       function roll_bones(element) {
+        let degrees = Math.floor((Math.random() * 1000) % 360) + 1;
+        let runner = setInterval(function () {
+          degrees++;
+          element.style.webkitTransform = "rotate(" + degrees + "deg)";
+        }, 10);
+
         setTimeout(() => {
           let result = Math.floor((Math.random() * 1000) % 6) + 1;
           element.src = `${result}.jpg`;
           sum += result;
           control_number++;
-          change_page(0);
+          clearInterval(runner);
+          change_page();
         }, Math.floor(Math.random() * (4000 - 1000 + 1)) + 1000);
       }
 
