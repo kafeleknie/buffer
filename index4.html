@@ -32,10 +32,28 @@
   <body>
     <button id="wynik"></button>
     <script>
-      let sum = localStorage.getItem("sum");
-      if (sum)
+      let sum_arr = JSON.parse(localStorage.getItem("sum"))
+      console.log(sum_arr)
+      function sumOfDuplicates(arr) {
+        const count = {};
+        let sum = 0;
+
+        arr.forEach(num => {
+            count[num] = (count[num] || 0) + 1;
+            if (count[num] === 2) {
+                sum += num * 2; 
+            } else if (count[num] > 2) {
+                sum += num;
+            }
+        });
+
+        return sum;
+      }
+
+
+      if (sum_arr)
         document.getElementById("wynik").innerHTML =
-          localStorage.getItem("sum");
+          sumOfDuplicates(sum_arr);
       else window.location.href = "index3.html";
 
       let degrees = 0;

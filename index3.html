@@ -29,13 +29,13 @@
       if (!number) window.location.href = "index2.html";
       let parent = document.getElementById("bones");
 
-      let sum = 0;
+      let sum = [];
       let control_number = 0;
 
       function change_page() {
         if (control_number == number) {
           setTimeout(() => {
-            localStorage.setItem("sum", sum);
+            localStorage.setItem("sum",JSON.stringify(sum));
             window.location.href = "index4.html";
           }, 1000);
         }
@@ -51,7 +51,7 @@
         setTimeout(() => {
           let result = Math.floor((Math.random() * 1000) % 6) + 1;
           element.src = `${result}.jpg`;
-          sum += result;
+          sum.push(result);
           control_number++;
           clearInterval(runner);
           change_page();
